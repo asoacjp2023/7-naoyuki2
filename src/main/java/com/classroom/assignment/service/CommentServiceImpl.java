@@ -29,8 +29,11 @@ public class CommentServiceImpl implements CommentService {
   @Override
   public List<Comment> getCommentSerchByName(String name) {
     // STEP7 検索欄に何も入れずに検索した場合、全件検索されるように分岐処理を追加してください。
-    List<Comment> list = dao.getCommentSerchByName(name);
-    return list;
+    if(name.isEmpty()){
+      return dao.getAll();
+    }else{
+      return dao.getCommentSerchByName(name);
+    }
   }
 
   @Override
